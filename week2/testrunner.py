@@ -3,3 +3,6 @@ def test_constrain():
 
 def test_valid_identifier():
     pass
+
+def test_fix_assignment():
+    pass
