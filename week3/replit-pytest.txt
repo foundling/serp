@@ -1,0 +1,5 @@
+- put this in a .pytest file: run="pytest testrunner.py "
+- from your testrunner.py file:
+
+import pytest
+from main import fn1

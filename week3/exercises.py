@@ -2,8 +2,8 @@
 # name as many immutable types as you can
 # name as many mutable types as you can
 
-def create_book_title(sentence, exclude=None):
-    ''' capitalizes each word in the sentence, excepting any passed in via exclude iterable '''
+def to_book_title(sentence, exclude=None):
+    ''' capitalizes each word in the sentence, excepting any words contained in 'exclude' '''
 
     return
 
@@ -36,3 +36,4 @@ def decipher(cipher_text):
         deciphered_text += deciphered_char 
     
     return deciphered_text
+
