@@ -1,0 +1,14 @@
+all collection methods: 
+https://docs.mongodb.com/manual/reference/method/js-collection/
+
+db.getCollectionNames()
+db.createCollection
+db.collection.find(query, projection)
+let result = db.collection.findAndModify()
+// check result.nInserted post insertion
+
+// ranges
+// query selectors: https://docs.mongodb.com/manual/reference/operator/query/#std-label-query-selectors
+// db.bios.find( { birth: { $gt: new Date('1940-01-01'), $lt: new Date('1960-01-01') } } )
+
+
