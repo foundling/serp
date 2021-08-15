@@ -1,0 +1,86 @@
+<!--
+  The form's action attribute tells the browser where to submit the data (absolute/relative url)
+  
+  The 'name' attributes on the inputs are important because they assign a name to the input value
+  and include it in the query string that gets sent to the server (see notes below).
+
+  The 'type=submit' attribute setting on the button is required to submit the form, without it it won't submit (hitting Enter will, though). 
+
+  The placeholder fields are to aid your users in understanding what the inputs are for. 
+
+-->
+
+<form action="/search" method="GET">
+  <input name="query" type="text" placeholder="Search"></input>
+  <input name="date" type="text" placeholder="Date"></input>
+  <input name="maxresults" type="text" placeholder="Max Results"></input>
+  <button type="submit">Search</button>
+</form>
+
+<!-- 
+  A search form example using native submit button functionality to submit data to server. 
+
+  Server sees this when the user clicks search:
+  /search?query=stroller&date=2021-08-15&maxresults=20
+
+  URL has two parts: 
+  the PATH '/search'
+  the QUERY STRING '?query=stroller&date=2021-08-15&maxresults=20'
+  the '?' separates the path from the query string.
+  the query string is a list of name=value pairs, separated by '&'s.
+
+  our query parameters are:
+    query=stroller
+    date=2021-08-15
+    maxresults=20
+
+  The server distinguishes between paths when it decides which function to call to process the request.
+  It doesn't consider the query string when distinguishing between paths.
+  To handle the user-request at a particular path, we write an endpoint handler for it. here's a pseudo-code example:
+
+  # runs when user triggers a request to /search?....
+  def search():
+    print('request method: ', request.method) # prints 'GET' 
+    print('query params: ', request.params) # prints { 'query': 'stroller', 'date': '2021-08-15' ... }
+
+    # let's do a database query with request.params
+    articles = db.query(request.params)
+
+    # let's get related products via the api search
+    products = api.search(request.params)
+
+    # we will fetch a pre-written template called 'search-results.html' that renders the two result lists.
+
+    returns template('search-results.html', articles=articles, products=products)
+
+-->
+<!-- 
+
+  Basic templating for search results:
+
+  <div class="tab-1 active">
+    {% for article in articles %}
+      <h1>{{ article.title }}</h1>
+      <div>{{ article.summary }}</div>
+    {% endfor %}
+
+    {% for product in products %}
+      <h1>{{ product.title }}</h1>
+      <div>{{ product.source }}</div>
+    {% endfor %}
+  </div>
+
+  <div class="tab-2">
+    {% for article in articles %}
+      <h1>{{ article.title }}</h1>
+      <div>{{ article.summary }}</div>
+    {% endfor %}
+
+    {% for product in products %}
+      <h1>{{ product.title }}</h1>
+      <div>{{ product.source }}</div>
+    {% endfor %}
+  </div>
+
+-->
+

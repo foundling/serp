@@ -1,0 +1,4 @@
+<!-- logo png wrapped in an anchor tag / link -->
+<a href="/">
+  <img src="/assets/img/logo.png"></img>
+</a>
